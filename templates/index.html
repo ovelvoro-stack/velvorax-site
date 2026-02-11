@@ -2,9 +2,101 @@
 <html>
 <head>
     <title>VelvoraX</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: black;
+        color: white;
+    }
+
+    .top-banner {
+        width: 100%;
+        height: 300px;
+        background: linear-gradient(135deg, #000000, #1a1a1a);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 80px;
+        box-sizing: border-box;
+    }
+
+    .banner-left h2 {
+        font-size: 28px;
+        color: gold;
+        margin: 0;
+    }
+
+    .banner-right {
+        text-align: right;
+    }
+
+    .banner-right h1 {
+        font-size: 48px;
+        margin: 0;
+        color: gold;
+    }
+
+    .banner-right p {
+        font-size: 18px;
+        color: white;
+        margin-top: 10px;
+    }
+
+    .launch-btn {
+        margin-top: 20px;
+        padding: 12px 30px;
+        background: gold;
+        color: black;
+        border: none;
+        border-radius: 30px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .launch-btn:hover {
+        background: orange;
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+        .top-banner {
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+            height: auto;
+        }
+
+        .banner-right {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .banner-right h1 {
+            font-size: 32px;
+        }
+    }
+    </style>
+
 </head>
+
 <body>
-    <h1>VelvoraX is Live 🚀</h1>
-    <p>Official Super Platform of Velvoro Software Solution</p>
+
+<div class="top-banner">
+    <div class="banner-left">
+        <h2>Velvoro Software Solution</h2>
+    </div>
+
+    <div class="banner-right">
+        <h1>VelvoraX 🚀</h1>
+        <p>Official Super Platform</p>
+        <button class="launch-btn">Super App Launching Soon</button>
+    </div>
+</div>
+
 </body>
 </html>
