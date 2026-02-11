@@ -4,10 +4,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return """
-    <h1>VelvoraX</h1>
-    <p>Official Super Platform of Velvoro Software Solution</p>
-    """
+    return "VelvoraX is Live 🚀"
 
 if __name__ == "__main__":
     app.run()
