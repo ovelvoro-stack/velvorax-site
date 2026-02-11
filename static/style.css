@@ -2,22 +2,17 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 40px;
-    background: #000;
-}
-
-.nav-left {
-    display: flex;
-    align-items: center;
+    padding: 15px 60px;
+    background: black;
 }
 
 .logo {
-    height: 45px;
-    margin-right: 10px;
+    height: 50px;
 }
 
-.brand-text {
-    color: gold;
-    font-weight: bold;
-    font-size: 18px;
+.nav-right a {
+    color: orange;
+    text-decoration: none;
+    margin-left: 25px;
+    font-weight: 600;
 }
