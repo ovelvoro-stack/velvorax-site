@@ -1,16 +1,46 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Contact - VelvoraX</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-body { background:black; color:white; font-family:Arial; margin:0; }
-.navbar { background:#000; padding:15px; text-align:center; }
-.navbar a { color:gold; margin:0 20px; text-decoration:none; font-weight:bold; }
-.container { padding:60px; text-align:center; }
-input, select { padding:10px; margin:10px; width:250px; }
-button { padding:10px 30px; background:gold; border:none; font-weight:bold; }
-</style>
+    <title>Services - VelvoraX</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #0f0f0f, #1c1c1c);
+            color: white;
+        }
+
+        .navbar {
+            background: rgba(0,0,0,0.9);
+            padding: 18px;
+            text-align: center;
+        }
+
+        .navbar a {
+            color: gold;
+            margin: 0 25px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .section {
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        h1 {
+            color: gold;
+            font-size: 42px;
+        }
+
+        .service-box {
+            background: #1e1e1e;
+            padding: 25px;
+            margin: 20px auto;
+            width: 300px;
+            border-radius: 12px;
+        }
+    </style>
 </head>
 <body>
 
@@ -21,22 +51,12 @@ button { padding:10px 30px; background:gold; border:none; font-weight:bold; }
     <a href="/contact">Contact</a>
 </div>
 
-<div class="container">
-<h1>Contact Us</h1>
+<div class="section">
+    <h1>Our Services</h1>
 
-<form method="POST">
-    <input type="text" name="name" placeholder="Full Name" required><br>
-    <input type="text" name="mobile" placeholder="Mobile Number" required><br>
-
-    <select name="service">
-        <option>CRM Automation</option>
-        <option>Digital Marketing</option>
-        <option>Business Automation</option>
-    </select><br>
-
-    <button type="submit">Submit</button>
-</form>
-
+    <div class="service-box">CRM Automation</div>
+    <div class="service-box">Digital Marketing Systems</div>
+    <div class="service-box">Business Workflow Automation</div>
 </div>
 
 </body>
