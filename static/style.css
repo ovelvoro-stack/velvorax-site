@@ -1,3 +1,23 @@
-body { font-family: Arial; padding: 20px; }
-nav a { margin-right: 15px; }
-button { padding:10px 20px; margin:10px; }
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background: #000;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    height: 45px;
+    margin-right: 10px;
+}
+
+.brand-text {
+    color: gold;
+    font-weight: bold;
+    font-size: 18px;
+}
