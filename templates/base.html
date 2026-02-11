@@ -1,18 +1,88 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>VelvoraX</title>
-<link rel="stylesheet" href="/static/style.css">
-<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-</head>
-<body>
-<nav>
-<a href="/">Home</a>
-<a href="/pricing">Pricing</a>
-<a href="/contact">Contact</a>
-<a href="/admin">Admin</a>
-</nav>
-<hr>
-{% block content %}{% endblock %}
-</body>
-</html>
+import os
+import razorpay
+import hmac
+import hashlib
+import requests
+from flask import Flask, render_template, request, jsonify, redirect, session
+from dotenv import load_dotenv
+
+load_dotenv()
+
+app = Flask(__name__)
+app.secret_key = os.getenv("SECRET_KEY")
+
+RAZORPAY_KEY_ID = os.getenv("RAZORPAY_KEY_ID")
+RAZORPAY_KEY_SECRET = os.getenv("RAZORPAY_KEY_SECRET")
+ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD")
+
+client = razorpay.Client(auth=(RAZORPAY_KEY_ID, RAZORPAY_KEY_SECRET))
+
+GOOGLE_SCRIPT_URL = os.getenv("GOOGLE_SCRIPT_URL")
+
+@app.route("/")
+def home():
+    return render_template("index.html")
+
+@app.route("/pricing")
+def pricing():
+    return render_template("pricing.html", key_id=RAZORPAY_KEY_ID)
+
+@app.route("/create-order", methods=["POST"])
+def create_order():
+    amount = int(request.form.get("amount")) * 100
+    order = client.order.create({
+        "amount": amount,
+        "currency": "INR",
+        "payment_capture": 1
+    })
+    return jsonify(order)
+
+@app.route("/verify-payment", methods=["POST"])
+def verify_payment():
+    data = request.json
+    order_id = data['razorpay_order_id']
+    payment_id = data['razorpay_payment_id']
+    signature = data['razorpay_signature']
+
+    generated_signature = hmac.new(
+        RAZORPAY_KEY_SECRET.encode(),
+        f"{order_id}|{payment_id}".encode(),
+        hashlib.sha256
+    ).hexdigest()
+
+    if generated_signature == signature:
+        return jsonify({"status": "success"})
+    else:
+        return jsonify({"status": "failure"}), 400
+
+@app.route("/contact", methods=["GET", "POST"])
+def contact():
+    if request.method == "POST":
+        data = {
+            "name": request.form["name"],
+            "email": request.form["email"],
+            "phone": request.form["phone"],
+            "message": request.form["message"]
+        }
+        if GOOGLE_SCRIPT_URL:
+            requests.post(GOOGLE_SCRIPT_URL, json=data)
+        return render_template("success.html")
+    return render_template("contact.html")
+
+@app.route("/admin", methods=["GET", "POST"])
+def admin():
+    if request.method == "POST":
+        if request.form["password"] == ADMIN_PASSWORD:
+            session["admin"] = True
+            return redirect("/admin")
+    if not session.get("admin"):
+        return '''
+        <form method="post">
+            <input type="password" name="password" placeholder="Admin Password"/>
+            <button type="submit">Login</button>
+        </form>
+        '''
+    return render_template("admin.html")
+
+if __name__ == "__main__":
+    app.run(debug=True)
