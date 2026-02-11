@@ -1,102 +1,38 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>Pricing - VelvoraX</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% extends "base.html" %}
+{% block content %}
+<h2>Premium Plans</h2>
 
-<style>
-body{
-margin:0;
-font-family:Arial,sans-serif;
-background:#111;
-color:white;
+<button onclick="pay(9999)">Starter - ₹9,999</button>
+<button onclick="pay(19999)">Pro - ₹19,999</button>
+
+<script>
+function pay(amount) {
+fetch("/create-order", {
+method: "POST",
+headers: {"Content-Type": "application/x-www-form-urlencoded"},
+body: "amount=" + amount
+})
+.then(res => res.json())
+.then(data => {
+var options = {
+"key": "{{key_id}}",
+"amount": data.amount,
+"currency": "INR",
+"order_id": data.id,
+"handler": function (response){
+fetch("/verify-payment", {
+method: "POST",
+headers: {"Content-Type": "application/json"},
+body: JSON.stringify(response)
+}).then(() => {
+window.location.href="/";
+});
 }
-
-.navbar{
-background:#000;
-padding:15px;
-text-align:center;
+};
+var rzp = new Razorpay(options);
+rzp.open();
+});
 }
+</script>
 
-.navbar a{
-color:gold;
-margin:0 15px;
-text-decoration:none;
-font-weight:bold;
-}
-
-.section{
-padding:80px 20px;
-text-align:center;
-}
-
-.card{
-background:#1e1e1e;
-padding:30px;
-margin:20px;
-display:inline-block;
-width:250px;
-border-radius:10px;
-}
-
-.price{
-font-size:28px;
-color:gold;
-margin:15px 0;
-}
-
-button{
-padding:10px 25px;
-background:gold;
-border:none;
-border-radius:20px;
-font-weight:bold;
-cursor:pointer;
-}
-</style>
-</head>
-
-<body>
-
-<div class="navbar">
-<a href="/">Home</a>
-<a href="/about">About</a>
-<a href="/services">Services</a>
-<a href="/contact">Contact</a>
-<a href="/pricing">Pricing</a>
-</div>
-
-<div class="section">
-<h2 style="color:gold;">Our Packages</h2>
-
-<div class="card">
-<h3>Starter</h3>
-<div class="price">₹4,999</div>
-<p>Basic CRM Setup</p>
-<a href="upi://pay?pa=9985201116@upi&pn=VelvoraX&am=4999&cu=INR">
-<button>Pay Now</button>
-</a>
-</div>
-
-<div class="card">
-<h3>Growth</h3>
-<div class="price">₹14,999</div>
-<p>CRM + Automation</p>
-<a href="upi://pay?pa=9985201116@upi&pn=VelvoraX&am=14999&cu=INR">
-<button>Pay Now</button>
-</a>
-</div>
-
-<div class="card">
-<h3>Enterprise</h3>
-<div class="price">Custom</div>
-<p>Full Business System</p>
-<a href="/contact">
-<button>Contact Us</button>
-</a>
-</div>
-
-</div>
-
-</body>
-</html>
+{% endblock %}
