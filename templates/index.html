@@ -1,92 +1,107 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>VelvoraX</title>
+<title>VelvoraX</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, #0f0f0f, #1c1c1c);
-            color: white;
-        }
+<style>
+body {
+margin:0;
+font-family:Arial, sans-serif;
+background:#111;
+color:white;
+}
 
-        /* NAVBAR */
-        .navbar {
-            background: rgba(0,0,0,0.9);
-            padding: 18px;
-            text-align: center;
-            position: sticky;
-            top: 0;
-        }
+.navbar {
+background:#000;
+padding:15px;
+text-align:center;
+}
 
-        .navbar a {
-            color: gold;
-            margin: 0 25px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 16px;
-        }
+.navbar a {
+color:gold;
+margin:0 15px;
+text-decoration:none;
+font-weight:bold;
+}
 
-        .navbar a:hover {
-            color: orange;
-        }
+.hero {
+padding:120px 20px;
+text-align:center;
+}
 
-        /* HERO SECTION */
-        .hero {
-            height: 80vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
+.hero h1 {
+font-size:48px;
+color:gold;
+margin:0;
+}
 
-        .hero h1 {
-            font-size: 50px;
-            color: gold;
-            margin-bottom: 15px;
-        }
+.hero p {
+font-size:18px;
+color:#ccc;
+margin-top:15px;
+}
 
-        .hero p {
-            font-size: 20px;
-            color: #ccc;
-        }
+.button {
+margin-top:30px;
+padding:12px 30px;
+background:gold;
+border:none;
+border-radius:25px;
+font-weight:bold;
+cursor:pointer;
+}
 
-        .btn {
-            margin-top: 30px;
-            padding: 14px 30px;
-            background: gold;
-            border: none;
-            border-radius: 30px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 16px;
-        }
+.section {
+padding:60px 20px;
+text-align:center;
+}
 
-        .btn:hover {
-            background: orange;
-        }
+.card {
+background:#1e1e1e;
+padding:25px;
+margin:15px auto;
+width:250px;
+border-radius:10px;
+}
 
-    </style>
+.footer {
+background:#000;
+padding:20px;
+text-align:center;
+color:#888;
+}
+</style>
+
 </head>
 
 <body>
 
-    <!-- NAVBAR -->
-    <div class="navbar">
-        <a href="/">Home</a>
-        <a href="/about">About</a>
-        <a href="/services">Services</a>
-        <a href="/contact">Contact</a>
-    </div>
+<div class="navbar">
+<a href="/">Home</a>
+<a href="/about">About</a>
+<a href="/services">Services</a>
+<a href="/contact">Contact</a>
+</div>
 
-    <!-- HERO -->
-    <div class="hero">
-        <h1>VelvoraX</h1>
-        <p>Official Super Platform of Velvoro Software Solution</p>
-        <button class="btn">Super App Launching Soon 🚀</button>
-    </div>
+<div class="hero">
+<h1>VelvoraX</h1>
+<p>Official Super Platform of Velvoro Software Solution</p>
+<button class="button">Get Started</button>
+</div>
+
+<div class="section">
+<h2 style="color:gold;">Our Systems</h2>
+
+<div class="card">CRM Automation</div>
+<div class="card">Digital Marketing</div>
+<div class="card">Business Automation</div>
+
+</div>
+
+<div class="footer">
+© 2026 VelvoraX | Powered by Velvoro Software Solution
+</div>
 
 </body>
 </html>
